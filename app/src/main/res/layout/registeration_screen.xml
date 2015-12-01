@@ -1,6 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/buttonGrp">
+    <CheckBox android:id="@+id/donor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donor"
+        android:onClick="onCheckboxClicked"/>
+    <CheckBox
+        android:id="@+id/recipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recipient"
+        android:onClick="onCheckboxClicked"/>
 </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonGrp"
+        android:text="User name"
+        android:id="@+id/usrname"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usrname"
+        android:text="password"
+        android:id="@+id/pwd"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pwd"
+        android:text="confirm password"
+        android:id="@+id/cfrmpwd"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cfrmpwd"
+        android:text="Name"
+        android:id="@+id/name"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:text="blood group"
+        android:id="@+id/bloodgrp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bloodgrp"
+        android:id="@+id/dob"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tosGrp"
+        android:layout_below="@+id/dob">
+        <CheckBox android:id="@+id/tos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accept terms"
+            android:onClick="onCheckboxClicked"/>
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@id/register"
+        android:layout_below="@+id/tosGrp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimaryDark"/>
+
+
+</RelativeLayout>
