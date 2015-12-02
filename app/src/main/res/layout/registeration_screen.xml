@@ -1,89 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="15dp"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/donor"
-        android:id="@+id/logo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/logo"
-    android:id="@+id/buttonGrp">
-    <CheckBox android:id="@+id/donor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Donor"
-        android:onClick="onCheckboxClicked"/>
-    <CheckBox
-        android:id="@+id/recipient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recipient"
-        android:onClick="onCheckboxClicked"/>
-</LinearLayout>
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGrp"
-        android:text="User name"
-        android:id="@+id/usrname"/>
+        android:orientation="vertical"
+        android:padding="15dp">
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/donor" />
+
+    <LinearLayout
+        android:id="@+id/buttonGrp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo">
+
+        <CheckBox
+            android:id="@+id/donor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Donor" />
+
+        <CheckBox
+            android:id="@+id/recipient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckboxClicked"
+            android:text="Recipient" />
+    </LinearLayout>
+
     <EditText
+        android:id="@+id/usrname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/buttonGrp"
+        android:text="User name" />
+
+    <EditText
+        android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usrname"
-        android:text="password"
-        android:id="@+id/pwd"/>
+        android:text="password" />
+
     <EditText
+        android:id="@+id/cfrmpwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_below="@+id/pwd"
-        android:text="confirm password"
-        android:id="@+id/cfrmpwd"/>
+        android:text="confirm password" />
+
     <EditText
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_below="@+id/cfrmpwd"
-        android:text="Name"
-        android:id="@+id/name"/>
+        android:text="Name" />
+
     <EditText
+        android:id="@+id/bloodgrp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
-        android:text="blood group"
-        android:id="@+id/bloodgrp"/>
+        android:text="blood group" />
+
     <EditText
+        android:id="@+id/dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bloodgrp"
-        android:id="@+id/dob"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/bloodgrp" />
+
     <LinearLayout
+        android:id="@+id/tosGrp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tosGrp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_below="@+id/dob">
-        <CheckBox android:id="@+id/tos"
+
+        <CheckBox
+            android:id="@+id/tos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accept terms"
-            android:onClick="onCheckboxClicked"/>
+            android:onClick="onCheckboxClicked"
+            android:text="Accept terms" />
 
     </LinearLayout>
+
     <Button
+        android:id="@id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@id/register"
         android:layout_below="@+id/tosGrp"
-        android:textColor="@color/white"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Register"
+        android:textColor="@color/white" />
 
+    </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>
