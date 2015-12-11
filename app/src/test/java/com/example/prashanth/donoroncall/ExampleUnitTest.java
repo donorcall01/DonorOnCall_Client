@@ -1,4 +1,4 @@
-package com.example.prashanth.donoroncall;
+package com.donor.oncall.donoroncall;
 
 import org.junit.Test;
 

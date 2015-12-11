@@ -1,4 +1,4 @@
-package com.example.prashanth.donoroncall;
+package com.donor.oncall;
 
 /**
  * Created by prashanth on 30/11/15.
