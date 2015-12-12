@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     static final LatLng IITChennai = new LatLng(12.991992, 80.237090);
     static final LatLng TidelPark = new LatLng(12.989504, 80.248420);
     private GoogleMap map;
