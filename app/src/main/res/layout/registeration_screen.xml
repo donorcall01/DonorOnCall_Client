@@ -47,14 +47,14 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:layout_below="@+id/buttonGrp"
-        android:text="User name" />
+        android:hint="User name" />
 
     <EditText
         android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/usrname"
-        android:text="password" />
+        android:hint="password" />
 
     <EditText
         android:id="@+id/cfrmpwd"
@@ -63,7 +63,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:layout_below="@+id/pwd"
-        android:text="confirm password" />
+        android:hint="confirm password" />
 
     <EditText
         android:id="@+id/name"
@@ -72,22 +72,21 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:layout_below="@+id/cfrmpwd"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/bloodgrp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:text="blood group" />
-
-    <EditText
+        android:hint="Name" />
+        <Spinner
+            android:id="@+id/bloodgrp"
+            android:layout_below="@+id/name"
+            android:layout_width="match_parent"
+            android:prompt="@string/title_blood_group"
+            android:layout_height="wrap_content" />
+       <EditText
         android:id="@+id/dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        android:layout_below="@+id/bloodgrp" />
+        android:layout_below="@+id/bloodgrp"
+        android:hint="Date of Birth"/>
 
     <LinearLayout
         android:id="@+id/tosGrp"
@@ -102,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onCheckboxClicked"
-            android:text="Accept terms" />
+            android:hint="Accept terms" />
 
     </LinearLayout>
 
