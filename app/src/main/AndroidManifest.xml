@@ -20,7 +20,7 @@
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDnsWkk5G19RwE8w7zk_NokRheItPkVUtg"/>
 
         <activity
-            android:name="com.donor.oncall.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.donor.oncall.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme" >
         </activity>
