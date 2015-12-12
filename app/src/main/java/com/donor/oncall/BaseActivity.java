@@ -3,6 +3,7 @@ package com.donor.oncall;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -41,6 +42,15 @@ public class BaseActivity extends AppCompatActivity {
     public void setUpToolBar(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setUpHomeButton();
+    }
+
+    public void setUpHomeButton(){
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null){
+            ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
