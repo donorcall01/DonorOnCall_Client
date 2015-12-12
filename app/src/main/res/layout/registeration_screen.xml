@@ -31,14 +31,12 @@
             android:id="@+id/donor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
             android:text="Donor" />
 
         <CheckBox
             android:id="@+id/recipient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="onCheckboxClicked"
             android:text="Recipient" />
     </LinearLayout>
 
