@@ -11,10 +11,18 @@ import com.donor.oncall.R;
 /**
  * Created by prashanth on 3/1/16.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.login_screen, container, false);
+
+        View rootView = inflater.inflate(R.layout.login_screen, container, false);
+        rootView.findViewById(R.id.signin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceViewFragment(new RegisterationFragment(), true);
+            }
+        });
+        return rootView;
         //return rootView;
     }
 }
