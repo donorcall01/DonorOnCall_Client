@@ -17,11 +17,6 @@ public class BaseFragment extends Fragment {
     protected void replaceViewFragment(int containerResourceId, Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(
-                        R.animator.slide_left_right,
-                        R.animator.slide_right_left,
-                        R.animator.slide_left_right,
-                        R.animator.slide_right_left)
                 .replace(containerResourceId, fragment);
         if (addToBackStack) transaction.addToBackStack(null);
         transaction.commit();
