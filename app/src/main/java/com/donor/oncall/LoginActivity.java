@@ -17,11 +17,6 @@ public class LoginActivity extends AppCompatActivity {
         boolean addToBackStack = true;
         FragmentTransaction transaction = getFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(
-                        R.animator.slide_left_right,
-                        R.animator.slide_right_left,
-                        R.animator.slide_left_right,
-                        R.animator.slide_right_left)
                 .replace(R.id.container, new LoginFragment());
         if (addToBackStack) transaction.addToBackStack(null);
         transaction.commit();
