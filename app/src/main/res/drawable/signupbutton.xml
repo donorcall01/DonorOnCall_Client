@@ -4,5 +4,5 @@
     <gradient android:startColor="#FFFFFF"
         android:endColor="#FFFFFF"/>
     <corners android:radius="1dp" />
-    <stroke android:width="2px" android:color="#FF4081" />
+    <stroke android:width="2px" android:color="@color/colorAccent" />
 </shape>
