@@ -1,6 +1,7 @@
 package com.donor.oncall.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.donor.oncall.DonorApi.LoginApi;
 import com.donor.oncall.DonorApi.ServiceGenerator;
+import com.donor.oncall.MainActivity;
 import com.donor.oncall.R;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -122,7 +124,8 @@ public class LoginFragment extends BaseFragment {
 
     public void signUpResponse(JsonObject jsonObject){
         if (jsonObject.get("success").getAsBoolean()){
-
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
         }else {
             Toast.makeText(getActivity(),errorMess,Toast.LENGTH_LONG).show();
         }
