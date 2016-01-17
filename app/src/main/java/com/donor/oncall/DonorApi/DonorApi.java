@@ -11,7 +11,7 @@ import retrofit.http.POST;
 /**
  * Created by prashanth on 16/1/16.
  */
-public interface LoginApi {
+public interface DonorApi {
     @Headers("Content-Type: application/json")
     @POST("/doc/gateWay")
     void login(@Body JSONObject jsonVal, Callback<Response> callback);
