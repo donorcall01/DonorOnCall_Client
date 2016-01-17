@@ -1,7 +1,6 @@
 package com.donor.oncall.fragments;
 
 import android.app.DatePickerDialog;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,9 +12,8 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import com.donor.oncall.DonorApi.LoginApi;
+import com.donor.oncall.DonorApi.DonorApi;
 import com.donor.oncall.DonorApi.ServiceGenerator;
 import com.donor.oncall.R;
 import com.google.gson.JsonElement;
@@ -213,7 +211,7 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     public void setUpRegisteration(){
-        final LoginApi loginApi = ServiceGenerator.createService(LoginApi.class);
+        final DonorApi donorApi = ServiceGenerator.createService(DonorApi.class);
        rootView.findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -229,7 +227,7 @@ public class RegisterationFragment extends BaseFragment {
                      jsonObject.put("type", type);
                      jsonObject.put("dob", dob);
                      Log.d(TAG,jsonObject.toString());
-                     loginApi.register(jsonObject,new Callback< Response >() {
+                     donorApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
                              //Log.d(TAG, "Success " + response.getReason());
