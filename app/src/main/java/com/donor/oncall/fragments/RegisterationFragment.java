@@ -178,6 +178,7 @@ public class RegisterationFragment extends BaseFragment {
         if (donor.isChecked()){
             type = "Donor";
         }else {
+            status =false;
             donor.setError("Select either donor or recipient");
         }
         if (recipient.isChecked()){
@@ -227,6 +228,7 @@ public class RegisterationFragment extends BaseFragment {
                      jsonObject.put("bloodGroup", bloodGrp);
                      jsonObject.put("type", type);
                      jsonObject.put("dob", dob);
+                     Log.d(TAG,jsonObject.toString());
                      loginApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
