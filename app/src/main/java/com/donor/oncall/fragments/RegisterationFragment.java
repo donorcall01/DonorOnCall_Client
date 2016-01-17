@@ -74,11 +74,9 @@ public class RegisterationFragment extends BaseFragment {
 
         };
 
-        dobField.setOnClickListener(new View.OnClickListener() {
-
+        dobField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
+            public void onFocusChange(View v, boolean hasFocus) {
                 new DatePickerDialog(getActivity(), date, calendar
                         .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                         calendar.get(Calendar.DAY_OF_MONTH)).show();
@@ -87,7 +85,6 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     private void updateDob() {
-
         String dateFormat = "DD/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
         dobField.setText(sdf.format(calendar.getTime()));
