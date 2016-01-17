@@ -25,8 +25,7 @@ import java.util.Locale;
 public class RegisterationFragment extends BaseFragment {
 
     private static  View rootView=null;
-    private static EditText usrnameField,pwdField,cfrmpwdField,nameField;
-    private static TextView dobField;
+    private static EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField;
     private static Spinner bloodGroupField;
     Calendar calendar = Calendar.getInstance();
     @Override
@@ -49,7 +48,7 @@ public class RegisterationFragment extends BaseFragment {
       pwdField = (EditText) rootView.findViewById(R.id.pwd);
       cfrmpwdField = (EditText) rootView.findViewById(R.id.cfrmpwd);
       nameField = (EditText) rootView.findViewById(R.id.name);
-      dobField = (TextView) rootView.findViewById(R.id.dob);
+      dobField = (EditText) rootView.findViewById(R.id.dob);
       bloodGroupField = (Spinner) rootView.findViewById(R.id.bloodgrp);
     }
 
