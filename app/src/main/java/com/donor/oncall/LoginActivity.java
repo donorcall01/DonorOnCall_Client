@@ -1,12 +1,10 @@
 package com.donor.oncall;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+
 import com.donor.oncall.fragments.LoginFragment;
-import com.donor.oncall.fragments.RegisterationFragment;
 
 public class LoginActivity extends AppCompatActivity {
 

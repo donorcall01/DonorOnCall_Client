@@ -1,7 +1,9 @@
 package com.donor.oncall.fragments;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ public class LoginFragment extends BaseFragment {
     private static String errorMess="The Username or Password is wrong";
     private static EditText passwordField,usernameField;
     private static String password,username;
+    private static ProgressDialog progressDialog;
     private static  View rootView=null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class LoginFragment extends BaseFragment {
         setupValueField();
         setUpLogin();
         setUpRegisteration();
+        setupProgressDialog();
         return rootView;
 
         //return rootView;
@@ -49,6 +53,13 @@ public class LoginFragment extends BaseFragment {
     public void setupValueField(){
         usernameField = (EditText) rootView.findViewById(R.id.usrname);
         passwordField = (EditText) rootView.findViewById(R.id.pwd);
+    }
+
+    public void setupProgressDialog(){
+        progressDialog= new ProgressDialog(LoginFragment.this.getActivity());
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Logging you into app");
+        progressDialog.setCancelable(false);
     }
 
     public  boolean validateEmailId(String email){
@@ -124,7 +135,8 @@ public class LoginFragment extends BaseFragment {
     }
 
     public void signUpResponse(JsonObject jsonObject){
-        if (jsonObject.get("success").getAsBoolean()){
+        if (!jsonObject.get("success").getAsBoolean()){
+            progressDialog.show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
         }else {
