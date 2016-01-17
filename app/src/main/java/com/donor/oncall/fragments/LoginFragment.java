@@ -40,6 +40,7 @@ public class LoginFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.login_screen, container, false);
         setupValueField();
         setUpLogin();
+        setUpRegisteration();
         return rootView;
 
         //return rootView;
@@ -129,5 +130,14 @@ public class LoginFragment extends BaseFragment {
         }else {
             Toast.makeText(getActivity(),errorMess,Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void setUpRegisteration(){
+        rootView.findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceViewFragment(new RegisterationFragment(),true);
+            }
+        });
     }
 }
