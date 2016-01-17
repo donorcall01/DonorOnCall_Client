@@ -18,20 +18,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:title="Home" />
+            android:id="@+id/pending_requests"
+            android:title="Pending requests" />
         <item
-            android:id="@+id/nav_messages"
-            android:title="Messages" />
+            android:id="@+id/request_for_blood"
+            android:title="Request for blood" />
         <item
-            android:id="@+id/nav_friends"
-            android:title="Friends" />
+            android:id="@+id/profile"
+            android:title="Profile" />
         <item
-            android:id="@+id/nav_discussion"
-            android:title="Discussion" />
+            android:id="@+id/e_certificates"
+            android:title="E-certificates" />
+        <item
+            android:id="@+id/all_donation_history"
+            android:title="All donation history" />
     </group>
 
-    <item android:title="Sub items">
+    <!--<item android:title="Sub items">
         <menu>
             <item
                 android:title="Sub item 1" />
@@ -39,5 +42,5 @@
                 android:title="Sub item 2" />
         </menu>
     </item>
-
+-->
 </menu>
