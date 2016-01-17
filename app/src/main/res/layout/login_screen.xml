@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="125dp"
         android:layout_height="125dp"
-        android:src="@drawable/donor"
+        android:src="@drawable/logo"
         android:id="@+id/logo"
         android:layout_marginTop="46dp"
         android:layout_alignParentTop="true"

@@ -17,7 +17,7 @@
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/donor" />
+        android:src="@drawable/logo" />
 
     <LinearLayout
         android:id="@+id/buttonGrp"
