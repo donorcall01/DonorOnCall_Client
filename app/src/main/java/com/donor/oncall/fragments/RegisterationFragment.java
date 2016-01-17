@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.donor.oncall.R;
 
@@ -24,21 +25,14 @@ import java.util.Locale;
 public class RegisterationFragment extends BaseFragment {
 
     private static  View rootView=null;
-    private static EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField;
+    private static EditText usrnameField,pwdField,cfrmpwdField,nameField;
+    private static TextView dobField;
     private static Spinner bloodGroupField;
     Calendar calendar = Calendar.getInstance();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         rootView = inflater.inflate(R.layout.registeration_screen, container, false);
-
-        /*Spinner spinner = (Spinner) rootView.findViewById(R.id.bloodgrp);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.blood_group, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
         return rootView;
-        //return rootView;
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -55,7 +49,7 @@ public class RegisterationFragment extends BaseFragment {
       pwdField = (EditText) rootView.findViewById(R.id.pwd);
       cfrmpwdField = (EditText) rootView.findViewById(R.id.cfrmpwd);
       nameField = (EditText) rootView.findViewById(R.id.name);
-      dobField = (EditText) rootView.findViewById(R.id.dob);
+      dobField = (TextView) rootView.findViewById(R.id.dob);
       bloodGroupField = (Spinner) rootView.findViewById(R.id.bloodgrp);
     }
 
@@ -95,9 +89,8 @@ public class RegisterationFragment extends BaseFragment {
 
     private void updateDob() {
 
-        String dateFormat = "DD/MM/YY"; //In which you need put here
+        String dateFormat = "DD/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
-
         dobField.setText(sdf.format(calendar.getTime()));
     }
 

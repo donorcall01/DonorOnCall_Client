@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:prompt="@string/title_blood_group"
             android:layout_height="wrap_content" />
-       <EditText
+       <TextView
         android:id="@+id/dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
