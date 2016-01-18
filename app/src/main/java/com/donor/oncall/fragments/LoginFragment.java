@@ -41,7 +41,7 @@ public class LoginFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.login_screen, container, false);
-        docSessionManager=new DocSessionManager(getContext());
+        docSessionManager=new DocSessionManager(getActivity());
         setupValueField();
         setUpLogin();
         setUpRegisteration();
