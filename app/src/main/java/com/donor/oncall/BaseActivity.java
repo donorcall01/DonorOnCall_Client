@@ -18,7 +18,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         docSessionManager = new DocSessionManager(getApplicationContext());
-        docSessionManager.checkLogin();
+       if(!docSessionManager.isLoggedIn()){
+       docSessionManager.checkLogin(BaseActivity.this);
+       }
         super.onCreate(savedInstanceState);
     }
 
