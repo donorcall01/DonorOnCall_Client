@@ -232,6 +232,7 @@ public class RegisterationFragment extends BaseFragment {
                          public void success(Response response, Response response2) {
                              Log.d(TAG, "Success " + response.getReason());
                              String json = new String(((TypedByteArray) response.getBody()).getBytes());
+                             replaceViewFragment(new LoginFragment(),true);
                              //JsonParser parser = new JsonParser();
                              //JsonElement responseJson = parser.parse(json);
                              //signUpResponse(responseJson.getAsJsonObject());
