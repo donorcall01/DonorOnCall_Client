@@ -14,8 +14,11 @@ import android.view.MenuItem;
 
 public class BaseActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
+    private static DocSessionManager docSessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        docSessionManager = new DocSessionManager(getApplicationContext());
+        docSessionManager.isLoggedIn();
         super.onCreate(savedInstanceState);
     }
 
