@@ -40,6 +40,9 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.action_share:
                 sharingIntent();
                 break;
+            case R.id.action_logout:
+                docSessionManager.logoutUser();
+                break;
         }
        return super.onOptionsItemSelected(item);
     }
