@@ -1,8 +1,10 @@
 package com.donor.oncall;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.ActivityCompat;
 
 import java.util.HashMap;
 
@@ -61,7 +63,7 @@ public class DocSessionManager {
      * If false it will redirect user to login page
      * Else won't do anything
      */
-    public void checkLogin() {
+    public void checkLogin(Activity activity) {
         // Check login status
         if (!this.isLoggedIn()) {
             // user is not logged in redirect him to Login Activity
@@ -74,6 +76,7 @@ public class DocSessionManager {
 
             // Staring Login Activity
             _context.startActivity(i);
+            activity.finish();
         }
 
     }
