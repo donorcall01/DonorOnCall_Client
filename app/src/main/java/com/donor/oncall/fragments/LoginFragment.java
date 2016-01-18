@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.donor.oncall.DocSessionManager;
 import com.donor.oncall.DonorApi.DonorApi;
 import com.donor.oncall.DonorApi.ServiceGenerator;
 import com.donor.oncall.MainActivity;
@@ -35,10 +36,12 @@ public class LoginFragment extends BaseFragment {
     private static String password,username;
     private static ProgressDialog progressDialog;
     private static  View rootView=null;
+    private static DocSessionManager docSessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.login_screen, container, false);
+        docSessionManager=new DocSessionManager(getContext());
         setupValueField();
         setUpLogin();
         setUpRegisteration();
@@ -134,6 +137,7 @@ public class LoginFragment extends BaseFragment {
 
     public void signUpResponse(JsonObject jsonObject){
         if (!jsonObject.get("success").getAsBoolean()){
+            docSessionManager.createLoginSession("dummyname",username);
             progressDialog.show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
