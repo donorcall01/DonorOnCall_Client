@@ -1,5 +1,7 @@
 package com.donor.oncall.DonorApi;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONObject;
 
 import retrofit.Callback;
@@ -19,5 +21,5 @@ public interface DonorApi {
 
     @Headers("Content-Type: application/json")
     @POST("/doc/register")
-    void register(@Body JSONObject jsonVal, Callback<Response> callback);
+    void register(@Body JsonObject jsonVal, Callback<Response> callback);
 }
