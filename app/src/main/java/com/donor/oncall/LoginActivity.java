@@ -21,13 +21,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             this.getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
-    }
+    }*/
 
 }
