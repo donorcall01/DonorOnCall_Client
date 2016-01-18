@@ -230,10 +230,10 @@ public class RegisterationFragment extends BaseFragment {
                      donorApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
-                             //Log.d(TAG, "Success " + response.getReason());
+                             Log.d(TAG, "Success " + response.getReason());
                              String json = new String(((TypedByteArray) response.getBody()).getBytes());
-                             JsonParser parser = new JsonParser();
-                             JsonElement responseJson = parser.parse(json);
+                             //JsonParser parser = new JsonParser();
+                             //JsonElement responseJson = parser.parse(json);
                              //signUpResponse(responseJson.getAsJsonObject());
                              Log.d(TAG, "Success " + json);
                          }
