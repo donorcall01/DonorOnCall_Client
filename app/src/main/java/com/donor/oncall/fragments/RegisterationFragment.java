@@ -86,6 +86,7 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     public void setupDateTimeField(){
+        calendar.set(1991,0,1);
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
