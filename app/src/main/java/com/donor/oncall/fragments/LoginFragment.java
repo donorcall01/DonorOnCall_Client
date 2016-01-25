@@ -150,7 +150,7 @@ public class LoginFragment extends BaseFragment {
         rootView.findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceViewFragment(new RegisterationFragment(),true);
+                replaceViewFragment(new RegisterationFragment(),false);
             }
         });
     }
