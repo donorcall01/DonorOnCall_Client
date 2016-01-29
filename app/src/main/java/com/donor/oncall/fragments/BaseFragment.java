@@ -1,7 +1,8 @@
 package com.donor.oncall.fragments;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import com.donor.oncall.R;
 

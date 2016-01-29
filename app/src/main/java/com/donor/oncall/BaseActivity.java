@@ -3,6 +3,8 @@ package com.donor.oncall;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -89,4 +91,15 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 
+    public void replaceViewFragment(Fragment fragment, boolean addToBackStack) {
+        replaceViewFragment(R.id.container, fragment, addToBackStack);
+    }
+
+    protected void replaceViewFragment(int containerResourceId, Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction transaction =  getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerResourceId, fragment);
+        if (addToBackStack) transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
