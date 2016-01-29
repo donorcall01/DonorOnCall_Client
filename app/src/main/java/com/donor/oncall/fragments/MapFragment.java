@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,25 +42,14 @@ public class MapFragment extends BaseFragment implements OnMapReadyCallback,
         SupportMapFragment mapFragment =
                 (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        mMap.setMyLocationEnabled(true);
-        /*if (mMap != null) {
-            mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-
-                @Override
-                public void onMyLocationChange(Location arg0) {
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
-                    mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
-                }
-            });
-        }*/
             return rootView;
-            //return rootView;
-
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
+        Toast.makeText(getContext(), "OnMap ready", Toast.LENGTH_SHORT).show();
         mMap = map;
+        mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         enableMyLocation();
     }
