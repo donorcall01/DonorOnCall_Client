@@ -141,6 +141,7 @@ public class LoginFragment extends BaseFragment {
             progressDialog.show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
+            getActivity().finish();
         }else {
             Toast.makeText(getActivity(),errorMess,Toast.LENGTH_LONG).show();
         }
