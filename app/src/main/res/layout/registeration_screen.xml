@@ -107,6 +107,7 @@
             android:layout_below="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:prompt="@string/title_blood_group"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />

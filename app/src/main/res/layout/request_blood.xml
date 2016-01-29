@@ -9,6 +9,7 @@
         android:prompt="@string/title_blood_group"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        style="@style/Base.Widget.AppCompat.Spinner.Underlined"
         android:layout_height="wrap_content" />
 
     <android.support.design.widget.TextInputLayout
