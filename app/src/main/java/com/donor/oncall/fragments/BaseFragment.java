@@ -1,6 +1,7 @@
 package com.donor.oncall.fragments;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
@@ -11,9 +12,12 @@ import com.donor.oncall.R;
  */
 public class BaseFragment extends Fragment {
 
+    private Context mContext;
+
     public void replaceViewFragment(Fragment fragment, boolean addToBackStack) {
         replaceViewFragment(R.id.container, fragment, addToBackStack);
     }
+
 
     protected void replaceViewFragment(int containerResourceId, Fragment fragment, boolean addToBackStack) {
         FragmentTransaction transaction = getFragmentManager()
@@ -28,6 +32,12 @@ public class BaseFragment extends Fragment {
         if (value == null || value.isEmpty())
             status =false;
         return  status;
+    }
+
+    @Override
+    public void onAttach(Context context){
+        super.onAttach(context);
+        mContext =context;
     }
 
 }
