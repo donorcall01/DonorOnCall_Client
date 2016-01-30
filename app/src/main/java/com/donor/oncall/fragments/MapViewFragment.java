@@ -29,7 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /**
  * Created by prashanth on 29/1/16.
  */
-public class MapFragment extends BaseFragment implements OnMapReadyCallback,
+public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener{
     private GoogleMap mMap;
     private Context mContext;

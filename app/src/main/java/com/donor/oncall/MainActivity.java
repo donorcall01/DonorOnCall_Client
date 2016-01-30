@@ -1,19 +1,9 @@
 package com.donor.oncall;
 
-import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.donor.oncall.fragments.MapViewFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends BaseActivity {
@@ -24,7 +14,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpToolBar();
-        replaceViewFragment(new com.donor.oncall.fragments.MapFragment(),false);
+        replaceViewFragment(new MapViewFragment(),false);
     }
 
 }
