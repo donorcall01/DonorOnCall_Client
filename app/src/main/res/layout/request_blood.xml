@@ -74,7 +74,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:hint="Units"
             android:layout_below="@+id/logo"
             android:id="@+id/units"/>

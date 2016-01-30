@@ -36,12 +36,12 @@ import retrofit.mime.TypedByteArray;
  */
 public class RegisterationFragment extends BaseFragment {
 
-    private static  View rootView=null;
-    private static EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField;
-    private static CheckBox tos,donor,recipient;
-    private static Spinner bloodGroupField;
+    private   View rootView=null;
+    private  EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField;
+    private  CheckBox tos,donor,recipient;
+    private  Spinner bloodGroupField;
     private static String TAG ="RegisterationFragment";
-    private static String password,username,cfrmpassword,name,dob,bloodGrp,type;
+    private  String password,username,cfrmpassword,name,dob,bloodGrp,type;
     private static ProgressDialog progressDialog;
     Calendar calendar = Calendar.getInstance();
     @Override
@@ -134,13 +134,6 @@ public class RegisterationFragment extends BaseFragment {
         return status;
         }
 
-
-    public boolean isNullOrEmpty(String value){
-        boolean status = true;
-        if (value == null || value.isEmpty())
-            status =false;
-        return  status;
-    }
 
     public boolean checkPwd(){
         boolean status = true;

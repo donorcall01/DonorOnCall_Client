@@ -23,5 +23,11 @@ public class BaseFragment extends Fragment {
         transaction.commit();
     }
 
+    public boolean isNullOrEmpty(String value){
+        boolean status = true;
+        if (value == null || value.isEmpty())
+            status =false;
+        return  status;
+    }
 
 }
