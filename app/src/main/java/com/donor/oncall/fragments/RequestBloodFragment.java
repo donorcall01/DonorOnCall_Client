@@ -11,7 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.donor.oncall.DonorApi.DonorApi;
+import com.donor.oncall.DonorApi.ServiceGenerator;
 import com.donor.oncall.R;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.mime.TypedByteArray;
 
 /**
  * Created by prashanth on 29/1/16.
@@ -140,12 +150,39 @@ public class RequestBloodFragment extends BaseFragment {
     }
 
     public void setUpRequestButton(){
+        final DonorApi donorApi = ServiceGenerator.createService(DonorApi.class);
         rootView.findViewById(R.id.requestBlood).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setFields();
                if (validateFields()){
-                   Log.d("ASDSF","test");
+                   JsonObject jsonObject = new JsonObject();
+                   jsonObject.addProperty("userName", "userName");
+                   jsonObject.addProperty("bloodGroup", bloodGrp);
+                   jsonObject.addProperty("hospitalName", hospital);
+                   jsonObject.addProperty("physicianName","physician name");
+                   jsonObject.addProperty("patient",patient);
+                   jsonObject.addProperty("purpose", purpose);
+                   jsonObject.addProperty("unit",String.valueOf(units));
+                   jsonObject.addProperty("howSoon", howsoon);
+                   Log.d("requestDonor", jsonObject.toString());
+
+                   donorApi.requestDonor(jsonObject, new Callback<Response>() {
+                       @Override
+                       public void success(Response response, Response response2) {
+                           Log.d("Success", "Success " + response.getReason());
+                           String json = new String(((TypedByteArray) response.getBody()).getBytes());
+                           JsonParser parser = new JsonParser();
+                           JsonElement responseJson = parser.parse(json);
+                          // signUpResponse(responseJson.getAsJsonObject());
+                           //Log.d(TAG, "Success " + json);
+                       }
+
+                       @Override
+                       public void failure(RetrofitError error) {
+                           //Log.d(TAG, "Success " + error.getMessage());
+                       }
+                   });
                }
             }
         });
