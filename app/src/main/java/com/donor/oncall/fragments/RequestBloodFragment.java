@@ -16,7 +16,7 @@ public class RequestBloodFragment extends BaseFragment {
     private static  View rootView=null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.registeration_screen, container, false);
+        rootView = inflater.inflate(R.layout.request_blood, container, false);
         return rootView;
     }
 
