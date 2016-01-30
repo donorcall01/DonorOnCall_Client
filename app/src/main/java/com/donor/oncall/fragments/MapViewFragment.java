@@ -24,7 +24,6 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener{
     private GoogleMap mMap;
     private static  View rootView=null;
-    private Context mContext =getContext();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -63,9 +62,9 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public boolean onMyLocationButtonClick() {
 
-        LocationManager locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
         if( !locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Location services not Enabled");  // GPS not found
             builder.setMessage("Enable Gps Location to get your current location"); // Want to enable?
             builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
