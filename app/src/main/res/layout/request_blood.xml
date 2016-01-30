@@ -20,7 +20,6 @@
         android:id="@+id/input_layout_hosp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
@@ -29,7 +28,6 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="Hospital Name/Doctor Name "
-            android:layout_below="@+id/logo"
             android:id="@+id/hospital"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -37,7 +35,6 @@
         android:id="@+id/input_layout_patient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/input_layout_bloodgrp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
@@ -45,7 +42,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Patient name"
-            android:layout_below="@+id/logo"
             android:id="@+id/patient"/>
     </android.support.design.widget.TextInputLayout>
 
