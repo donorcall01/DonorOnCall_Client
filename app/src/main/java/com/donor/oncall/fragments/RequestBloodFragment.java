@@ -1,8 +1,10 @@
 package com.donor.oncall.fragments;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +54,7 @@ public class RequestBloodFragment extends BaseFragment {
     public void setupProgressDialog(){
         progressDialog= new ProgressDialog(RequestBloodFragment.this.getActivity());
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Hang on ! Registering your Details with us");
+        progressDialog.setMessage("Hang on ! Registering your request with us");
         progressDialog.setCancelable(false);
     }
     public void setUpDropDown(){
@@ -156,6 +158,7 @@ public class RequestBloodFragment extends BaseFragment {
             public void onClick(View v) {
                 setFields();
                if (validateFields()){
+                   progressDialog.show();
                    JsonObject jsonObject = new JsonObject();
                    jsonObject.addProperty("userName", "userName");
                    jsonObject.addProperty("bloodGroup", bloodGrp);
@@ -174,6 +177,16 @@ public class RequestBloodFragment extends BaseFragment {
                            String json = new String(((TypedByteArray) response.getBody()).getBytes());
                            JsonParser parser = new JsonParser();
                            JsonElement responseJson = parser.parse(json);
+                           progressDialog.hide();
+                           new AlertDialog.Builder(getContext())
+                                   .setTitle("Donors have been contacted")
+                                   .setMessage("You're new donor will be trackable in map once your request has been approved.")
+                                   .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                       public void onClick(DialogInterface dialog, int which) {
+                                           replaceViewFragment(new MapViewFragment(),false);
+                                       }
+                                   })
+                                   .show();
                           // signUpResponse(responseJson.getAsJsonObject());
                            //Log.d(TAG, "Success " + json);
                        }
