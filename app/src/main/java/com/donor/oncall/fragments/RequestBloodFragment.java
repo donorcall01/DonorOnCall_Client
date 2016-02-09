@@ -20,6 +20,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.util.Map;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -183,7 +185,11 @@ public class RequestBloodFragment extends BaseFragment {
                                    .setMessage("You're new donor will be trackable in map once your request has been approved.")
                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                        public void onClick(DialogInterface dialog, int which) {
-                                           replaceViewFragment(new MapViewFragment(),false);
+                                           Bundle message = new Bundle();
+                                           message.putBoolean("showRecipientAlert", true);
+                                           MapViewFragment mapViewFragment = new MapViewFragment();
+                                           mapViewFragment.setArguments(message);
+                                           replaceViewFragment(mapViewFragment, false);
                                        }
                                    })
                                    .show();
