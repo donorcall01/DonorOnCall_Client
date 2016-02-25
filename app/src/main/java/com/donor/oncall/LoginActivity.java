@@ -1,6 +1,7 @@
 package com.donor.oncall;
 
-import android.app.FragmentTransaction;
+
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         boolean addToBackStack = true;
-        FragmentTransaction transaction = getFragmentManager()
+        FragmentTransaction transaction = getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, new LoginFragment());
         if (addToBackStack) transaction.addToBackStack(null);

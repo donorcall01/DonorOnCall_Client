@@ -141,6 +141,7 @@ public class LoginFragment extends BaseFragment {
             progressDialog.show();
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
+            getActivity().finish();
         }else {
             Toast.makeText(getActivity(),errorMess,Toast.LENGTH_LONG).show();
         }
@@ -150,7 +151,7 @@ public class LoginFragment extends BaseFragment {
         rootView.findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceViewFragment(new RegisterationFragment(),true);
+                replaceViewFragment(new RegisterationFragment(),false);
             }
         });
     }
