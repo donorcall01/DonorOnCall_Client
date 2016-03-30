@@ -41,10 +41,27 @@
     </LinearLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_username"
+            android:id="@+id/input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/buttonGrp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:hint="Email id" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout_email"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
@@ -54,13 +71,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:hint="Email id" />
+                android:hint="User name" />
         </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/input_layout_username"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name" />
+        </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/input_layout_username"
+            android:layout_below="@+id/input_layout_name"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
@@ -85,26 +119,9 @@
                 android:hint="confirm password" />
         </android.support.design.widget.TextInputLayout>
 
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/input_layout_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/input_layout_cfrmpwd"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Name" />
-        </android.support.design.widget.TextInputLayout>
-
-
         <Spinner
             android:id="@+id/bloodgrp"
-            android:layout_below="@+id/input_layout_name"
+            android:layout_below="@+id/input_layout_cfrmpwd"
             android:layout_width="match_parent"
             android:prompt="@string/title_blood_group"
             style="@style/Base.Widget.AppCompat.Spinner.Underlined"
