@@ -37,11 +37,11 @@ import retrofit.mime.TypedByteArray;
 public class RegisterationFragment extends BaseFragment {
 
     private   View rootView=null;
-    private  EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField;
+    private  EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField,emailField;
     private  CheckBox tos,donor,recipient;
     private  Spinner bloodGroupField;
     private static String TAG ="RegisterationFragment";
-    private  String password,username,cfrmpassword,name,dob,bloodGrp,type;
+    private  String password,username,cfrmpassword,name,dob,bloodGrp,type,email;
     private static ProgressDialog progressDialog;
     Calendar calendar = Calendar.getInstance();
     @Override
@@ -69,6 +69,7 @@ public class RegisterationFragment extends BaseFragment {
 
     public void setupFields(){
       usrnameField = (EditText) rootView.findViewById(R.id.usrname);
+      emailField = (EditText) rootView.findViewById(R.id.email);
       pwdField = (EditText) rootView.findViewById(R.id.pwd);
       cfrmpwdField = (EditText) rootView.findViewById(R.id.cfrmpwd);
       nameField = (EditText) rootView.findViewById(R.id.name);
@@ -86,7 +87,7 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     public void setupDateTimeField(){
-        calendar.set(1991,0,1);
+        calendar.set(1991, 0, 1);
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -124,11 +125,11 @@ public class RegisterationFragment extends BaseFragment {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         if (isNullOrEmpty(value)){
             if (!value.matches(emailPattern)){
-                usrnameField.setError("Enter a valid Email-id");
+                emailField.setError("Enter a valid Email-id");
                 status = false;
             }
         }else{
-            usrnameField.setError("User name cannot be empty");
+            emailField.setError("User name cannot be empty");
             status = false;
         }
         return status;
@@ -165,6 +166,15 @@ public class RegisterationFragment extends BaseFragment {
         return status;
     }
 
+    public boolean checkUserName(){
+        boolean status = true;
+        if (!isNullOrEmpty(name)){
+            usrnameField.setError("User name  cannot be empty");
+            status = false;
+        }
+        return status;
+    }
+
     public boolean checkDob(){
         boolean status = true;
         if (!isNullOrEmpty(dob)){
@@ -192,9 +202,10 @@ public class RegisterationFragment extends BaseFragment {
     public boolean validateFields(){
         boolean status = true;
 
-        if (isValidEmail(username)
-                && checkPwd()
+        if (isValidEmail(email)
+                && checkUserName()
                 && checkName()
+                && checkPwd()
                 && checkDob()
                 && checkDonorRecipient()) {
 
@@ -206,6 +217,7 @@ public class RegisterationFragment extends BaseFragment {
 
     public void setFieldValues(){
         username=usrnameField.getText().toString();
+        email=emailField.getText().toString();
         password=pwdField.getText().toString();
         cfrmpassword=cfrmpwdField.getText().toString();
         dob=dobField.getText().toString();
