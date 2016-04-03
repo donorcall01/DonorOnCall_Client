@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.donor.oncall.R;
@@ -112,7 +113,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
                         .setMessage("Your donor request has been approved.You're all set.Track your current donor using map.")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                                updateLayoutAsRecipientScreen();
                             }
                         })
                         .show();
@@ -149,14 +150,18 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     public void onConnectionSuspended(int i) {
 
     }
-
+    public void updateLayoutAsRecipientScreen(){
+       Button requestblood = (Button) rootView.findViewById(R.id.requestBlood);
+        requestblood.setText("Call Donor");
+        showDonorOnMap();
+    }
     @Override
     public void onLocationChanged(Location location) {
 // New location has now been determined
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
     }
@@ -216,6 +221,24 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
 
         //Displaying current coordinates in toast
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    private void showDonorOnMap(){
+        //Creating a LatLng Object to store Coordinates
+        LatLng latLng = new LatLng(lattitue, longitude);
+
+        //Adding marker to map
+        mMap.addMarker(new MarkerOptions()
+                .position(latLng) //setting position
+                .draggable(true) //Making the marker draggable
+                .title("Rakesh Agarwal")
+                .snippet("Age : 55 ,ETA : 7.55pm at Hospital")); //Adding a title
+
+        //Moving the camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        //Animating the camera
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 
 
