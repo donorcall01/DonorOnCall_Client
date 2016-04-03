@@ -25,6 +25,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.google.android.gms:play-services-maps:8.3.0'
+    compile 'com.google.android.gms:play-services-location:8.3.0'
     compile 'com.google.android.gms:play-services-analytics:8.3.0'
     // Retrofit & OkHttp
     compile 'com.squareup.retrofit:retrofit:1.9.0'
