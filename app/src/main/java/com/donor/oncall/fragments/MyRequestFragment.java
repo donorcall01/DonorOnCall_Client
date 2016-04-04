@@ -10,7 +10,7 @@ import com.donor.oncall.R;
 /**
  * Created by prashanth on 4/1/16.
  */
-public class PendingRequestFragment extends BaseFragment {
+public class MyRequestFragment extends BaseFragment {
     private   View rootView=null;
 
     @Override
