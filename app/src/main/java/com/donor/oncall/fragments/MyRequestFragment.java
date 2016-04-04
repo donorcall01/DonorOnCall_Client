@@ -15,7 +15,7 @@ public class MyRequestFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.pending_request, container, false);
+        rootView = inflater.inflate(R.layout.my_request, container, false);
         return rootView;
     }
 }
