@@ -20,7 +20,7 @@ public interface DonorApi {
 
 
     @Headers("Content-Type: application/json")
-    @POST("/doc/register")
+    @POST("/register")
     void register(@Body JsonObject jsonVal, Callback<Response> callback);
 
     @Headers("Content-Type: application/json")
