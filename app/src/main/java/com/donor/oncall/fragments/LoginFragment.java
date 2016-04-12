@@ -101,28 +101,37 @@ public class LoginFragment extends BaseFragment {
         rootView.findViewById(R.id.signin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject jsonObject = new JSONObject();
+                JsonObject jsonObject = new JsonObject();
                 if (validateEmailIdAndPassword()) {
                     try {
 
-                        jsonObject.put("userName", username);
-                        jsonObject.put("passWord", password);
-
+                        jsonObject.addProperty("userName", username);
+                        jsonObject.addProperty("password", password);
 
                         donorApi.login(jsonObject, new Callback<Response>() {
                             @Override
                             public void success(Response response, Response response2) {
-                                Log.d(TAG, "Success " + response.getReason());
                                 String json = new String(((TypedByteArray) response.getBody()).getBytes());
                                 JsonParser parser = new JsonParser();
-                                JsonElement responseJson = parser.parse(json);
-                                signUpResponse(responseJson.getAsJsonObject());
+                                JsonObject responseJson = parser.parse(json).getAsJsonObject();
+                                String email =responseJson.get("userName").getAsString();
+                                String token =responseJson.get("token").getAsString();
+                                progressDialog.show();
+                                docSessionManager.createLoginSession(email,token);
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                                progressDialog.hide();
+                                //signUpResponse(responseJson.getAsJsonObject());
                                 Log.d(TAG, "Success " + json);
                             }
 
                             @Override
                             public void failure(RetrofitError error) {
-                                Log.d(TAG, "Success " + error.getMessage());
+                                String json =  new String(((TypedByteArray)error.getResponse().getBody()).getBytes());
+                                JsonParser parser = new JsonParser();
+                                JsonObject errorJson = parser.parse(json).getAsJsonObject();
+                                passwordField.setError(errorJson.get("error").getAsString());
                             }
                         });
 
@@ -135,17 +144,6 @@ public class LoginFragment extends BaseFragment {
         });
     }
 
-    public void signUpResponse(JsonObject jsonObject){
-        if (!jsonObject.get("success").getAsBoolean()){
-            docSessionManager.createLoginSession("dummyname",username);
-            progressDialog.show();
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-            getActivity().finish();
-        }else {
-            Toast.makeText(getActivity(),errorMess,Toast.LENGTH_LONG).show();
-        }
-    }
 
     public void setUpRegisteration(){
         rootView.findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {

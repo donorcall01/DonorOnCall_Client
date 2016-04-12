@@ -11,7 +11,7 @@ import retrofit.client.OkClient;
 public class ServiceGenerator {
 
     public static final String production_domain = "http://ec2-52-74-63-14.ap-southeast-1.compute.amazonaws.com";
-    public static  final String debug_domain = "http://192.168.1.36:8000";
+    public static  final String debug_domain = "http://192.168.0.103:8000";
 
     private static RestAdapter.Builder builder = new RestAdapter.Builder()
             .setEndpoint(debug_domain)
