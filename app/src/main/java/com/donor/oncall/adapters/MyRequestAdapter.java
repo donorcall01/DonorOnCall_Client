@@ -54,7 +54,7 @@ public class MyRequestAdapter extends RecyclerView.Adapter<MyRequestAdapter.Cust
 
 
         //Setting text view title
-        customViewHolder.textView.setText(Html.fromHtml(mRequestItem.getTitle()));
+       // customViewHolder.textView.setText(Html.fromHtml(mRequestItem.getTitle()));
     }
 
     @Override
