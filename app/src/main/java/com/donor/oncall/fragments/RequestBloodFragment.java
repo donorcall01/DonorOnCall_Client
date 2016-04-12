@@ -162,14 +162,17 @@ public class RequestBloodFragment extends BaseFragment {
                if (validateFields()){
                    progressDialog.show();
                    JsonObject jsonObject = new JsonObject();
-                   jsonObject.addProperty("userName", "userName");
+                   jsonObject.addProperty("username", "userName");
                    jsonObject.addProperty("bloodGroup", bloodGrp);
                    jsonObject.addProperty("hospitalName", hospital);
                    jsonObject.addProperty("physicianName","physician name");
-                   jsonObject.addProperty("patient",patient);
+                   jsonObject.addProperty("patientName",patient);
                    jsonObject.addProperty("purpose", purpose);
-                   jsonObject.addProperty("unit",String.valueOf(units));
+                   jsonObject.addProperty("units",String.valueOf(units));
                    jsonObject.addProperty("howSoon", howsoon);
+                   jsonObject.addProperty("phoneNo", "phoneNo");
+                   jsonObject.addProperty("latitude", "latitude");
+                   jsonObject.addProperty("longitude", "longitude");
                    Log.d("requestDonor", jsonObject.toString());
 
                    donorApi.requestDonor(jsonObject, new Callback<Response>() {
