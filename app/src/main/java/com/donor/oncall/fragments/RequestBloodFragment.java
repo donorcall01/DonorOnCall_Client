@@ -196,8 +196,7 @@ public class RequestBloodFragment extends BaseFragment {
                                        }
                                    })
                                    .show();
-                          // signUpResponse(responseJson.getAsJsonObject());
-                           //Log.d(TAG, "Success " + json);
+
                        }
 
                        @Override

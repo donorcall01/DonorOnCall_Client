@@ -13,7 +13,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpToolBar();
-        replaceViewFragment(new MapViewFragment(),false);
+        replaceViewFragment(new MyRequestFragment(),false);
     }
 
 }
