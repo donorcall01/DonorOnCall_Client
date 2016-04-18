@@ -103,6 +103,7 @@ public class LoginFragment extends BaseFragment {
             public void onClick(View v) {
                 JsonObject jsonObject = new JsonObject();
                 if (validateEmailIdAndPassword()) {
+                    progressDialog.show();
                     try {
 
                         jsonObject.addProperty("userName", username);
@@ -116,7 +117,7 @@ public class LoginFragment extends BaseFragment {
                                 JsonObject responseJson = parser.parse(json).getAsJsonObject();
                                 String email =responseJson.get("userName").getAsString();
                                 String token =responseJson.get("token").getAsString();
-                                progressDialog.show();
+
                                 docSessionManager.createLoginSession(email,token);
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                 startActivity(intent);
@@ -132,6 +133,7 @@ public class LoginFragment extends BaseFragment {
                                 JsonParser parser = new JsonParser();
                                 JsonObject errorJson = parser.parse(json).getAsJsonObject();
                                 passwordField.setError(errorJson.get("error").getAsString());
+                                progressDialog.hide();
                             }
                         });
 
