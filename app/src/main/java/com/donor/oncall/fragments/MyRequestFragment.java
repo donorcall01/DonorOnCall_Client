@@ -45,47 +45,27 @@ public class MyRequestFragment extends BaseFragment {
     }
 
     private void prepareMovieData() {
-        RequestItem requestItem = new RequestItem("Mad Max: Fury Road", "Action & Adventure", "2015");
+        RequestItem requestItem = new RequestItem("Ramesh Chowdry","Male","12:12","10/12,second street","O+","52","2.5 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("Inside Out", "Animation, Kids & Family", "2015");
+        requestItem = new RequestItem("Ramesh Chowdry","Male","12:12","10/12,second street","b+","53","2 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("Star Wars: Episode VII - The Force Awakens", "Action", "2015");
+        requestItem = new RequestItem("Suresh Chowdry","Male","10:12","10/12,second street","AB+","42","1 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("Shaun the Sheep", "Animation", "2015");
+        requestItem = new RequestItem("Dinesh","Male","02:12","10/12,second street","O+","22","6 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("The Martian", "Science Fiction & Fantasy", "2015");
+        requestItem = new RequestItem("Ramesh","FeMale","13:12","10/12,second street","B-","32","3 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("Mission: Impossible Rogue Nation", "Action", "2015");
+        requestItem = new RequestItem("Ankit Agarwal","Male","12:50","10/12,second street","AB+","22","5 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("Up", "Animation", "2009");
+        requestItem = new RequestItem("Ramesh Chowdry","Male","00:12","10/12,second street","AB-","562","2 units");
         requestItems.add(requestItem);
 
-        requestItem = new RequestItem("Star Trek", "Science Fiction", "2009");
-        requestItems.add(requestItem);
-
-        requestItem = new RequestItem("The LEGO Movie", "Animation", "2014");
-        requestItems.add(requestItem);
-
-        requestItem = new RequestItem("Iron Man", "Action & Adventure", "2008");
-        requestItems.add(requestItem);
-
-        requestItem = new RequestItem("Aliens", "Science Fiction", "1986");
-        requestItems.add(requestItem);
-
-        requestItem = new RequestItem("Chicken Run", "Animation", "2000");
-        requestItems.add(requestItem);
-
-        requestItem = new RequestItem("Back to the Future", "Science Fiction", "1985");
-        requestItems.add(requestItem);
-
-        requestItem = new RequestItem("Raiders of the Lost Ark", "Action & Adventure", "1981");
-        requestItems.add(requestItem);
         myRequestAdapter.notifyDataSetChanged();
     }
 

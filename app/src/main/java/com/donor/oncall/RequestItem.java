@@ -5,38 +5,42 @@ package com.donor.oncall;
  */
 public class RequestItem {
 
-    private String title, genre, year;
+    private String name,gender,time,adressInfo,bloodgrp,age,units;
 
     public RequestItem() {
     }
 
-    public RequestItem(String title, String genre, String year) {
-        this.title = title;
-        this.genre = genre;
-        this.year = year;
+    public RequestItem(String name,String gender,String time,String adressInfo,String bloodgrp,String age,String units) {
+        this.name = name;
+        this.gender = gender;
+        this.time = time;
+        this.adressInfo = adressInfo;
+        this.bloodgrp = bloodgrp;
+        this.age = age;
+        this.units = units;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return "Mr."+ name;
     }
 
-    public void setTitle(String name) {
-        this.title = name;
-    }
 
-    public String getYear() {
-        return year;
+    public String getTime() {
+        return time;
     }
-
-    public void setYear(String year) {
-        this.year = year;
+    public String getGender() {
+        return gender;
     }
-
-    public String getGenre() {
-        return genre;
+    public String getAdressInfo() {
+        return adressInfo;
     }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public String getBloodgrp() {
+        return bloodgrp;
+    }
+    public String getAge() {
+        return age;
+    }
+    public String getUnits() {
+        return units;
     }
 }

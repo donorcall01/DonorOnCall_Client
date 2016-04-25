@@ -29,13 +29,17 @@ public class MyRequestAdapter extends RecyclerView.Adapter<MyRequestAdapter.Cust
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, year, genre;
+        public TextView name,gender,address,bloodGrp,age,units,time;
 
         public CustomViewHolder(View view) {
             super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            genre = (TextView) view.findViewById(R.id.genre);
-            year = (TextView) view.findViewById(R.id.year);
+            name = (TextView) view.findViewById(R.id.name);
+            gender = (TextView) view.findViewById(R.id.gender);
+            address = (TextView) view.findViewById(R.id.adressInfo);
+            bloodGrp = (TextView) view.findViewById(R.id.bloodgrp);
+            age = (TextView) view.findViewById(R.id.age);
+            units = (TextView) view.findViewById(R.id.units);
+            time = (TextView) view.findViewById(R.id.time);
         }
     }
 
@@ -49,9 +53,14 @@ public class MyRequestAdapter extends RecyclerView.Adapter<MyRequestAdapter.Cust
     @Override
     public void onBindViewHolder(CustomViewHolder customViewHolder, int i) {
         RequestItem feedItem = mRequestItem.get(i);
-        customViewHolder.title.setText(feedItem.getTitle());
-        customViewHolder.genre.setText(feedItem.getGenre());
-        customViewHolder.year.setText(feedItem.getYear());
+        customViewHolder.name.setText(feedItem.getName());
+        customViewHolder.gender.setText(feedItem.getGender());
+        customViewHolder.address.setText(feedItem.getAdressInfo());
+        customViewHolder.bloodGrp.setText(feedItem.getBloodgrp());
+        customViewHolder.age.setText(feedItem.getAge());
+        customViewHolder.units.setText(feedItem.getUnits());
+        customViewHolder.time.setText(feedItem.getTime());
+
 
         //Setting text view title
        // customViewHolder.textView.setText(Html.fromHtml(mRequestItem.getTitle()));
