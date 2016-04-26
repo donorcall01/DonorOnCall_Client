@@ -122,7 +122,7 @@ public class LoginFragment extends BaseFragment {
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
-                                progressDialog.hide();
+                                progressDialog.dismiss();
                                 //signUpResponse(responseJson.getAsJsonObject());
                                 Log.d(TAG, "Success " + json);
                             }
@@ -133,7 +133,7 @@ public class LoginFragment extends BaseFragment {
                                 JsonParser parser = new JsonParser();
                                 JsonObject errorJson = parser.parse(json).getAsJsonObject();
                                 passwordField.setError(errorJson.get("error").getAsString());
-                                progressDialog.hide();
+                                progressDialog.dismiss();
                             }
                         });
 
