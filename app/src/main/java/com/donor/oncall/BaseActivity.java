@@ -127,4 +127,11 @@ public class BaseActivity extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            this.getFragmentManager().popBackStack();
+        }
+    }
 }
