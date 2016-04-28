@@ -227,14 +227,15 @@ public class RegisterationFragment extends BaseFragment {
                      jsonObject.addProperty("userName",name);
                      jsonObject.addProperty("bloodGroup", bloodGrp);
                      jsonObject.addProperty("dob", dob);
-                     jsonObject.addProperty("phoneNo","9962");
+                     jsonObject.addProperty("phoneNo",phnnumber);
                      jsonObject.addProperty("email", email);
                      Log.d(TAG,jsonObject.toString());
                      donorApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
                              Log.d(TAG, "Success " + response.getReason());
-                             progressDialog.setMessage("Thank you for Signing up");
+                             progressDialog.setMessage("Thank you for Signin up");
+                            // String json = new String(((TypedByteArray) response.getBody()).getBytes());
                              replaceViewFragment(new LoginFragment(),false);
                              progressDialog.dismiss();
 
