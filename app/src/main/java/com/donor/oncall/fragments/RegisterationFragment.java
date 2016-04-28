@@ -1,7 +1,9 @@
 package com.donor.oncall.fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -232,19 +234,26 @@ public class RegisterationFragment extends BaseFragment {
                          @Override
                          public void success(Response response, Response response2) {
                              Log.d(TAG, "Success " + response.getReason());
-                             String json = new String(((TypedByteArray) response.getBody()).getBytes());
+                             progressDialog.setMessage("Thank you for Signing up");
                              replaceViewFragment(new LoginFragment(),false);
-                             JsonParser parser = new JsonParser();
-                             JsonElement responseJson = parser.parse(json);
-                             progressDialog.setMessage("Thank you for Signin up");
+                             progressDialog.dismiss();
 
-                             signUpResponse(responseJson.getAsJsonObject());
-                             Log.d(TAG, "Success " + responseJson);
                          }
 
                          @Override
                          public void failure(RetrofitError error) {
-                             Log.d(TAG, "Success " + error.getMessage());
+
+                             new AlertDialog.Builder(getContext())
+                                     .setTitle("User Already Exists")
+                                     .setMessage("Email id has been already signed up. Please use forgot password to login.")
+                                     .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                                         public void onClick(DialogInterface dialog, int which) {
+                                             dialog.dismiss();
+                                         }
+                                     })
+
+                                     .setIcon(android.R.drawable.ic_dialog_alert)
+                                     .show();
                          }
                      });
                  }catch (Exception e){
