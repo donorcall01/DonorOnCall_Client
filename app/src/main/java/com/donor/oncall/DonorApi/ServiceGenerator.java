@@ -14,7 +14,7 @@ public class ServiceGenerator {
     public static  final String debug_domain = "http://192.168.0.103:8000";
 
     private static RestAdapter.Builder builder = new RestAdapter.Builder()
-            .setEndpoint(production_domain)
+            .setEndpoint(debug_domain)
             .setClient(new OkClient(new OkHttpClient()));
 
     public static <S> S createService(Class<S> serviceClass) {

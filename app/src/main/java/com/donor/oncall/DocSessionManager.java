@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class DocSessionManager {
     // Shared Preferences
-    SharedPreferences pref;
+    private static SharedPreferences pref;
 
     // Editor for Shared preferences
     SharedPreferences.Editor editor;
@@ -58,6 +58,9 @@ public class DocSessionManager {
         editor.commit();
     }
 
+    public static String getValueKey(String key){
+        return pref.getString(key,"");
+    }
     /**
      * Check login method wil check user login status
      * If false it will redirect user to login page
