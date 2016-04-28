@@ -33,9 +33,9 @@ import retrofit.mime.TypedByteArray;
 public class RequestBloodFragment extends BaseFragment {
 
     private  View rootView=null;
-    private  EditText hospitalField,patientField,purposeField,unitsField,howsoonField;
+    private  EditText hospitalField,patientField,purposeField,unitsField,howsoonField,phnnumberField;
     private  Spinner bloodGroupField;
-    private  String hospital,patient,purpose,howsoon,bloodGrp;
+    private  String hospital,patient,purpose,howsoon,bloodGrp,phnnumber;
     private  int units;
     private static ProgressDialog progressDialog;
     @Override
@@ -73,6 +73,7 @@ public class RequestBloodFragment extends BaseFragment {
         unitsField = (EditText) rootView.findViewById(R.id.units);
         howsoonField = (EditText) rootView.findViewById(R.id.howsoon);
         bloodGroupField = (Spinner) rootView.findViewById(R.id.bloodgrp);
+        phnnumberField = (EditText) rootView.findViewById(R.id.phnnumber);
     }
 
     public void setFields(){
@@ -81,8 +82,18 @@ public class RequestBloodFragment extends BaseFragment {
         purpose=purposeField.getText().toString();
         howsoon=howsoonField.getText().toString();
         bloodGrp =bloodGroupField.getSelectedItem().toString();
+        phnnumber =phnnumberField.getText().toString();
     }
 
+    public boolean checkPhoneNumber(){
+        boolean status =true;
+        if (!isNullOrEmpty(phnnumber))
+        {
+            phnnumberField.setError("Phone Number cannot be empty");
+            status =false;
+        }
+        return status;
+    }
 
     public boolean checkHospital(){
         boolean status = true;
@@ -143,6 +154,7 @@ public class RequestBloodFragment extends BaseFragment {
 
         if (checkHospital()
                 && checkPatient()
+                && checkPhoneNumber()
                 && checkPurpose()
                 && checkUnits()
                 && checkHowsoon()) {
@@ -162,7 +174,6 @@ public class RequestBloodFragment extends BaseFragment {
                if (validateFields()){
                    progressDialog.show();
                    JsonObject jsonObject = new JsonObject();
-                   jsonObject.addProperty("username", "userName");
                    jsonObject.addProperty("bloodGroup", bloodGrp);
                    jsonObject.addProperty("hospitalName", hospital);
                    jsonObject.addProperty("physicianName","physician name");
@@ -170,7 +181,7 @@ public class RequestBloodFragment extends BaseFragment {
                    jsonObject.addProperty("purpose", purpose);
                    jsonObject.addProperty("units",String.valueOf(units));
                    jsonObject.addProperty("howSoon", howsoon);
-                   jsonObject.addProperty("phoneNo", "phoneNo");
+                   jsonObject.addProperty("phoneNo", phnnumber);
                    jsonObject.addProperty("latitude", "latitude");
                    jsonObject.addProperty("longitude", "longitude");
                    Log.d("requestDonor", jsonObject.toString());
