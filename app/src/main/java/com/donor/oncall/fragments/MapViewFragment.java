@@ -49,7 +49,7 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     private double lattitue,longitude;
     private GoogleApiClient googleApiClient;
     private LocationRequest mLocationRequest;
-
+    private  MarkerOptions markerOptions;
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
@@ -159,12 +159,9 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public void onLocationChanged(Location location) {
     // New location has now been determined
-        String msg = "Updated Location: " +
-                Double.toString(location.getLatitude()) + "," +
-                Double.toString(location.getLongitude());
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        markerOptions.position(latLng);
     }
 
     @Override
@@ -204,11 +201,12 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     private void moveMap() {
 
         LatLng latLng = new LatLng(lattitue, longitude);
-        //Adding marker to map
-        mMap.addMarker(new MarkerOptions()
+        markerOptions = new MarkerOptions()
                 .position(latLng) //setting position
                 .draggable(true) //Making the marker draggable
-                .title("Current Location")); //Adding a title
+                .title("Current Location");
+        //Adding marker to map
+        mMap.addMarker(markerOptions); //Adding a title
         //Moving the camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         //Animating the camera
