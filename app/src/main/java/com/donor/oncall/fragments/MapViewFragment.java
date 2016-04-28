@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.FileDescriptor;
@@ -39,7 +41,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by prashanth on 29/1/16.
  */
-public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener,LocationListener{
+public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,LocationListener,GoogleMap.OnMyLocationButtonClickListener,GoogleMap.OnMarkerDragListener {
     private GoogleMap mMap;
     private   View rootView=null;
     private boolean showRecipientAlert;
@@ -74,7 +77,16 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         rootView.findViewById(R.id.requestBlood).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replaceViewFragment(new RequestBloodFragment(), false);
+
+                    Bundle message = new Bundle();
+                    message.putDouble("longitude", longitude);
+                    message.putDouble("lattitude", lattitue);
+                    RequestBloodFragment requestBloodFragment = new RequestBloodFragment();
+                    requestBloodFragment.setArguments(message);
+                    replaceViewFragment(requestBloodFragment, false);
+                    replaceViewFragment(new RequestBloodFragment(), false);
+
+
             }
         });
 
@@ -84,20 +96,9 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Location services not Enabled");  // GPS not found
-            builder.setMessage("Enable Gps Location to get your current location"); // Want to enable?
-            builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                }
-            });
-            builder.setNegativeButton(android.R.string.no, null);
-            builder.create().show();
-        }
-
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMarkerDragListener(this);
         if (showRecipientAlert)
             setShowRecipientAlertDialog();
 
@@ -157,11 +158,11 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     }
     @Override
     public void onLocationChanged(Location location) {
-// New location has now been determined
+    // New location has now been determined
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        //Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
         // You can now create a LatLng Object for use with maps
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
     }
@@ -201,26 +202,18 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
     private void moveMap() {
-        //String to display current latitude and longitude
-        String msg = lattitue + ", "+longitude;
 
-        //Creating a LatLng Object to store Coordinates
         LatLng latLng = new LatLng(lattitue, longitude);
-
         //Adding marker to map
         mMap.addMarker(new MarkerOptions()
                 .position(latLng) //setting position
                 .draggable(true) //Making the marker draggable
                 .title("Current Location")); //Adding a title
-
         //Moving the camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
         //Animating the camera
         mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
-        //Displaying current coordinates in toast
-        Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
     }
 
     private void showDonorOnMap(){
@@ -242,5 +235,45 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
     }
 
 
+    public boolean checkGpsIsEnabled(){
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+    }
 
+    public void showAlertDialogOnGPS(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Location services not Enabled");  // GPS not found
+        builder.setMessage("Enable Gps Location to get your current location"); // Want to enable?
+        builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            }
+        });
+        builder.setNegativeButton(android.R.string.no, null);
+        builder.create().show();
+    }
+    @Override
+    public boolean onMyLocationButtonClick() {
+        if (!checkGpsIsEnabled()) {
+            showAlertDialogOnGPS();
+        }
+        return false;
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        LatLng dragPosition = marker.getPosition();
+        lattitue = dragPosition.latitude;
+        longitude = dragPosition.longitude;
+    }
 }
