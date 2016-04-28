@@ -224,7 +224,6 @@ public class RegisterationFragment extends BaseFragment {
                      progressDialog.show();
                      jsonObject.addProperty("password", password);
                      jsonObject.addProperty("name", name);
-                     jsonObject.addProperty("userName",name);
                      jsonObject.addProperty("bloodGroup", bloodGrp);
                      jsonObject.addProperty("dob", dob);
                      jsonObject.addProperty("phoneNo",phnnumber);
