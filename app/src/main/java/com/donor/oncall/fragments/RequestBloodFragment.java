@@ -47,12 +47,16 @@ public class RequestBloodFragment extends BaseFragment {
             lattitude = getArguments().getDouble("lattitude");
             longitude = getArguments().getDouble("longitude");
         }
+        Log.d("GeoSpace",String.valueOf(lattitude));
+        Log.d("GeoSpace",String.valueOf(longitude));
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d("GeoSpace",String.valueOf(lattitude));
+        Log.d("GeoSpace",String.valueOf(longitude));
         //strict ordering
         setUpViews();
         setUpRequestButton();
@@ -183,9 +187,13 @@ public class RequestBloodFragment extends BaseFragment {
         rootView.findViewById(R.id.requestBlood).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("GeoSpace",String.valueOf(lattitude));
+                Log.d("GeoSpace",String.valueOf(longitude));
                 setFields();
                if (validateFields()){
                    progressDialog.show();
+                   Log.d("GeoSpace",String.valueOf(lattitude));
+                   Log.d("GeoSpace",String.valueOf(longitude));
                    JsonObject json = new JsonObject();
                    json.addProperty("token",DocSessionManager.getValueKey(DocSessionManager.KEY_ACESS_TOKEN));
                    JsonObject jsonObject = new JsonObject();
@@ -202,6 +210,7 @@ public class RequestBloodFragment extends BaseFragment {
                    jsonObject.addProperty("lon",longitude);
                    json.add("data",jsonObject);
                    Log.d("requestDonor", json.toString());
+
 
                    donorApi.requestDonor(json, new Callback<Response>() {
                        @Override
