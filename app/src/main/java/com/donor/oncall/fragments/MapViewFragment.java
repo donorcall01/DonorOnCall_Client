@@ -63,7 +63,6 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
         showRecipientAlert = getArguments().getBoolean("showRecipientAlert",false);
         }
         mapFragment.getMapAsync(this);
-        rootView.findViewById(R.id.requestBlood).setEnabled(false);
         googleApiClient = new GoogleApiClient.Builder(getContext())
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -84,9 +83,6 @@ public class MapViewFragment extends BaseFragment implements OnMapReadyCallback,
                     RequestBloodFragment requestBloodFragment = new RequestBloodFragment();
                     requestBloodFragment.setArguments(message);
                     replaceViewFragment(requestBloodFragment, false);
-                    replaceViewFragment(new RequestBloodFragment(), false);
-
-
             }
         });
 
