@@ -26,4 +26,8 @@ public interface DonorApi {
     @Headers("Content-Type: application/json")
     @POST("/api/bloodRequest/register")
     void requestDonor(@Body JsonObject jsonVal, Callback<Response> callback);
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/bloodRequest/get")
+    void getBloodRequest(@Body JsonObject jsonVal, Callback<Response> callback);
 }
