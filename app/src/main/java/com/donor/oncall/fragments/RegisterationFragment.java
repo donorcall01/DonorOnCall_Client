@@ -1,7 +1,9 @@
 package com.donor.oncall.fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -37,11 +39,11 @@ import retrofit.mime.TypedByteArray;
 public class RegisterationFragment extends BaseFragment {
 
     private   View rootView=null;
-    private  EditText usrnameField,pwdField,cfrmpwdField,nameField,dobField,emailField;
-    private  CheckBox tos,donor,recipient;
+    private  EditText phnnumberField,pwdField,cfrmpwdField,nameField,dobField,emailField;
+    private  CheckBox tos;
     private  Spinner bloodGroupField;
     private static String TAG ="RegisterationFragment";
-    private  String password,username,cfrmpassword,name,dob,bloodGrp,type,email;
+    private  String password,phnnumber,cfrmpassword,name,dob,bloodGrp,type,email;
     private static ProgressDialog progressDialog;
     Calendar calendar = Calendar.getInstance();
     @Override
@@ -68,15 +70,13 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     public void setupFields(){
-      usrnameField = (EditText) rootView.findViewById(R.id.usrname);
+      phnnumberField = (EditText) rootView.findViewById(R.id.phnnumber);
       emailField = (EditText) rootView.findViewById(R.id.email);
       pwdField = (EditText) rootView.findViewById(R.id.pwd);
       cfrmpwdField = (EditText) rootView.findViewById(R.id.cfrmpwd);
       nameField = (EditText) rootView.findViewById(R.id.name);
       dobField = (EditText) rootView.findViewById(R.id.dob);
       bloodGroupField = (Spinner) rootView.findViewById(R.id.bloodgrp);
-      donor = (CheckBox) rootView.findViewById(R.id.donor);
-      recipient = (CheckBox) rootView.findViewById(R.id.recipient);
     }
 
     public void setUpDropDown(){
@@ -115,7 +115,7 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     private void updateDob() {
-        String dateFormat = "yyyy-MM-DD"; //In which you need put here
+        String dateFormat = "DD-MM-yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
         dobField.setText(sdf.format(calendar.getTime()));
     }
@@ -166,14 +166,7 @@ public class RegisterationFragment extends BaseFragment {
         return status;
     }
 
-    public boolean checkUserName(){
-        boolean status = true;
-        if (!isNullOrEmpty(name)){
-            usrnameField.setError("User name  cannot be empty");
-            status = false;
-        }
-        return status;
-    }
+
 
     public boolean checkDob(){
         boolean status = true;
@@ -184,18 +177,13 @@ public class RegisterationFragment extends BaseFragment {
         return status;
     }
 
-    public boolean checkDonorRecipient(){
-        boolean status = true;
-        if (donor.isChecked()){
-            type = "Donor";
-        }else {
+    public boolean checkPhoneNumber(){
+        boolean status =true;
+        if (!isNullOrEmpty(phnnumber))
+        {
+            phnnumberField.setError("Phone Number cannot be empty");
             status =false;
-            donor.setError("Select either donor or recipient");
         }
-        if (recipient.isChecked()){
-            type = "Recipient";
-        }
-
         return status;
     }
 
@@ -203,11 +191,10 @@ public class RegisterationFragment extends BaseFragment {
         boolean status = true;
 
         if (isValidEmail(email)
-                && checkUserName()
+                && checkPhoneNumber()
                 && checkName()
                 && checkPwd()
-                && checkDob()
-                && checkDonorRecipient()) {
+                && checkDob()) {
 
         }else {
             status = false;
@@ -216,7 +203,7 @@ public class RegisterationFragment extends BaseFragment {
     }
 
     public void setFieldValues(){
-        username=usrnameField.getText().toString();
+        phnnumber=phnnumberField.getText().toString();
         email=emailField.getText().toString();
         password=pwdField.getText().toString();
         cfrmpassword=cfrmpwdField.getText().toString();
@@ -235,29 +222,38 @@ public class RegisterationFragment extends BaseFragment {
                if (validateFields()){
                  try {
                      progressDialog.show();
-                     jsonObject.addProperty("userName", username);
-                     jsonObject.addProperty("passWord", password);
+                     jsonObject.addProperty("password", password);
                      jsonObject.addProperty("name", name);
                      jsonObject.addProperty("bloodGroup", bloodGrp);
-                     jsonObject.addProperty("type", type);
                      jsonObject.addProperty("dob", dob);
+                     jsonObject.addProperty("phoneNo",phnnumber);
+                     jsonObject.addProperty("email", email);
                      Log.d(TAG,jsonObject.toString());
                      donorApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
                              Log.d(TAG, "Success " + response.getReason());
-                             String json = new String(((TypedByteArray) response.getBody()).getBytes());
-                             replaceViewFragment(new LoginFragment(),false);
-                             JsonParser parser = new JsonParser();
-                             JsonElement responseJson = parser.parse(json);
                              progressDialog.setMessage("Thank you for Signin up");
-                             signUpResponse(responseJson.getAsJsonObject());
-                             Log.d(TAG, "Success " + json);
+                            // String json = new String(((TypedByteArray) response.getBody()).getBytes());
+                             replaceViewFragment(new LoginFragment(),false);
+                             progressDialog.dismiss();
+
                          }
 
                          @Override
                          public void failure(RetrofitError error) {
-                             Log.d(TAG, "Success " + error.getMessage());
+
+                             new AlertDialog.Builder(getContext())
+                                     .setTitle("User Already Exists")
+                                     .setMessage("Email id has been already signed up. Please use forgot password to login.")
+                                     .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                                         public void onClick(DialogInterface dialog, int which) {
+                                             dialog.dismiss();
+                                         }
+                                     })
+
+                                     .setIcon(android.R.drawable.ic_dialog_alert)
+                                     .show();
                          }
                      });
                  }catch (Exception e){
@@ -270,7 +266,7 @@ public class RegisterationFragment extends BaseFragment {
 
     public void signUpResponse(JsonObject jsonObject){
 
-        if (jsonObject.get("registration").getAsString().equals("success"))
+        if (jsonObject.get("status").getAsString().equals("ok"))
         {
             progressDialog.hide();
             replaceViewFragment(new LoginFragment(),true);

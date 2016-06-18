@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.donor.oncall.DocSessionManager;
 import com.donor.oncall.DonorApi.DonorApi;
 import com.donor.oncall.DonorApi.ServiceGenerator;
 import com.donor.oncall.R;
@@ -33,20 +34,29 @@ import retrofit.mime.TypedByteArray;
 public class RequestBloodFragment extends BaseFragment {
 
     private  View rootView=null;
-    private  EditText hospitalField,patientField,purposeField,unitsField,howsoonField;
+    private  EditText hospitalField,patientField,purposeField,unitsField,howsoonField,phnnumberField;
     private  Spinner bloodGroupField;
-    private  String hospital,patient,purpose,howsoon,bloodGrp;
-    private  int units;
+    private  String hospital,patient,purpose,bloodGrp,phnnumber;
+    private double lattitude,longitude;
+    private  int units,howsoon;
     private static ProgressDialog progressDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.request_blood, container, false);
+        if (getArguments() !=null){
+            lattitude = getArguments().getDouble("lattitude");
+            longitude = getArguments().getDouble("longitude");
+        }
+        Log.d("GeoSpace",String.valueOf(lattitude));
+        Log.d("GeoSpace",String.valueOf(longitude));
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.d("GeoSpace",String.valueOf(lattitude));
+        Log.d("GeoSpace",String.valueOf(longitude));
         //strict ordering
         setUpViews();
         setUpRequestButton();
@@ -73,16 +83,26 @@ public class RequestBloodFragment extends BaseFragment {
         unitsField = (EditText) rootView.findViewById(R.id.units);
         howsoonField = (EditText) rootView.findViewById(R.id.howsoon);
         bloodGroupField = (Spinner) rootView.findViewById(R.id.bloodgrp);
+        phnnumberField = (EditText) rootView.findViewById(R.id.phnnumber);
     }
 
     public void setFields(){
         hospital=hospitalField.getText().toString();
         patient=patientField.getText().toString();
         purpose=purposeField.getText().toString();
-        howsoon=howsoonField.getText().toString();
         bloodGrp =bloodGroupField.getSelectedItem().toString();
+        phnnumber =phnnumberField.getText().toString();
     }
 
+    public boolean checkPhoneNumber(){
+        boolean status =true;
+        if (!isNullOrEmpty(phnnumber))
+        {
+            phnnumberField.setError("Phone Number cannot be empty");
+            status =false;
+        }
+        return status;
+    }
 
     public boolean checkHospital(){
         boolean status = true;
@@ -120,7 +140,7 @@ public class RequestBloodFragment extends BaseFragment {
                 units=Integer.parseInt(_units);
             }catch (NumberFormatException e){
                 status = false;
-                unitsField.setError("Units Field cannot con");
+                unitsField.setError("Units Field cannot String");
             }
         }
 
@@ -130,9 +150,17 @@ public class RequestBloodFragment extends BaseFragment {
 
     public boolean checkHowsoon(){
         boolean status = true;
-        if (!isNullOrEmpty(howsoon)){
+        String _units = howsoonField.getText().toString();
+        if (!isNullOrEmpty(_units)){
             howsoonField.setError("Howsoon  cannot be empty");
             status = false;
+        }else {
+            try {
+                howsoon = Integer.parseInt(_units);
+            } catch (NumberFormatException e) {
+                status = false;
+                howsoonField.setError("Howsoon Field cannot String");
+            }
         }
         return status;
     }
@@ -143,6 +171,7 @@ public class RequestBloodFragment extends BaseFragment {
 
         if (checkHospital()
                 && checkPatient()
+                && checkPhoneNumber()
                 && checkPurpose()
                 && checkUnits()
                 && checkHowsoon()) {
@@ -161,21 +190,27 @@ public class RequestBloodFragment extends BaseFragment {
                 setFields();
                if (validateFields()){
                    progressDialog.show();
+                   JsonObject json = new JsonObject();
+                   json.addProperty("token",DocSessionManager.getValueKey(DocSessionManager.KEY_ACESS_TOKEN));
                    JsonObject jsonObject = new JsonObject();
-                   jsonObject.addProperty("userName", "userName");
                    jsonObject.addProperty("bloodGroup", bloodGrp);
                    jsonObject.addProperty("hospitalName", hospital);
-                   jsonObject.addProperty("physicianName","physician name");
-                   jsonObject.addProperty("patient",patient);
+                   jsonObject.addProperty("hospitalAddress","hospitalAddress");
+                   jsonObject.addProperty("patientName",patient);
+                   jsonObject.addProperty("comment","");
                    jsonObject.addProperty("purpose", purpose);
-                   jsonObject.addProperty("unit",String.valueOf(units));
-                   jsonObject.addProperty("howSoon", howsoon);
-                   Log.d("requestDonor", jsonObject.toString());
+                   jsonObject.addProperty("requiredUnits",units);
+                   jsonObject.addProperty("requiredWithin", howsoon);
+                   jsonObject.addProperty("contactNumber", phnnumber);
+                   jsonObject.addProperty("lat",lattitude);
+                   jsonObject.addProperty("lon",longitude);
+                   json.add("data",jsonObject);
+                   Log.d("requestDonor", json.toString());
 
-                   donorApi.requestDonor(jsonObject, new Callback<Response>() {
+
+                   donorApi.requestDonor(json, new Callback<Response>() {
                        @Override
                        public void success(Response response, Response response2) {
-                           Log.d("Success", "Success " + response.getReason());
                            String json = new String(((TypedByteArray) response.getBody()).getBytes());
                            JsonParser parser = new JsonParser();
                            JsonElement responseJson = parser.parse(json);
@@ -185,16 +220,16 @@ public class RequestBloodFragment extends BaseFragment {
                                    .setMessage("You're new donor will be trackable in map once your request has been approved.")
                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                        public void onClick(DialogInterface dialog, int which) {
-                                           Bundle message = new Bundle();
+                                           dialog.dismiss();
+                                         /*  Bundle message = new Bundle();
                                            message.putBoolean("showRecipientAlert", true);
                                            MapViewFragment mapViewFragment = new MapViewFragment();
                                            mapViewFragment.setArguments(message);
-                                           replaceViewFragment(mapViewFragment, false);
+                                           replaceViewFragment(mapViewFragment, false);*/
                                        }
                                    })
                                    .show();
-                          // signUpResponse(responseJson.getAsJsonObject());
-                           //Log.d(TAG, "Success " + json);
+
                        }
 
                        @Override

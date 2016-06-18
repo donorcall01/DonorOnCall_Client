@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class DocSessionManager {
     // Shared Preferences
-    SharedPreferences pref;
+    private static SharedPreferences pref;
 
     // Editor for Shared preferences
     SharedPreferences.Editor editor;
@@ -29,7 +29,7 @@ public class DocSessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
 
     // User name (make variable public to access from outside)
-    public static final String KEY_NAME = "name";
+    public static final String KEY_ACESS_TOKEN = "token";
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
@@ -44,12 +44,12 @@ public class DocSessionManager {
     /**
      * Create login session
      */
-    public void createLoginSession(String name, String email) {
+    public void createLoginSession(String email,String sessionKey) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
         // Storing name in pref
-        editor.putString(KEY_NAME, name);
+        editor.putString(KEY_ACESS_TOKEN, sessionKey);
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
@@ -58,6 +58,9 @@ public class DocSessionManager {
         editor.commit();
     }
 
+    public static String getValueKey(String key){
+        return pref.getString(key,"");
+    }
     /**
      * Check login method wil check user login status
      * If false it will redirect user to login page
@@ -88,7 +91,7 @@ public class DocSessionManager {
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         // user name
-        user.put(KEY_NAME, pref.getString(KEY_NAME, null));
+        user.put(KEY_ACESS_TOKEN, pref.getString(KEY_ACESS_TOKEN, null));
 
         // user email id
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
