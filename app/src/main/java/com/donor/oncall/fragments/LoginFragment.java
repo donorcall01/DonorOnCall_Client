@@ -69,11 +69,11 @@ public class LoginFragment extends BaseFragment {
         if (email == null || email.isEmpty()){
             usernameField.setError("User name cannot be empty");
         }else {
-          //  if (email.matches(emailPattern)){
+            if (email.matches(emailPattern)){
                status = true;
-            //}else {
-              //  usernameField.setError("Not a valid email Address");
-           // }
+            }else {
+                usernameField.setError("Not a valid email Address");
+            }
         }
      return status;
     }
