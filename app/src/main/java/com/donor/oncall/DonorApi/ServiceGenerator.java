@@ -10,7 +10,7 @@ import retrofit.client.OkClient;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://ec2-52-74-63-14.ap-southeast-1.compute.amazonaws.com";
+    public static final String API_BASE_URL = "http://45.55.137.90:8000/";
 
     private static RestAdapter.Builder builder = new RestAdapter.Builder()
             .setEndpoint(API_BASE_URL)

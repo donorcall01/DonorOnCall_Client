@@ -141,7 +141,7 @@ public class RegisterationFragment extends BaseFragment {
         if (isNullOrEmpty(password)){
             if (isNullOrEmpty(cfrmpassword)){
                   if (!password.equals(cfrmpassword)){
-                      cfrmpwdField.setError("Passwords donot match");
+                      cfrmpwdField.setError("Passwords do not match");
                       status = false;
                   }
             }else {
@@ -188,13 +188,14 @@ public class RegisterationFragment extends BaseFragment {
         boolean status = true;
         if (donor.isChecked()){
             type = "Donor";
+        }
+        else if (recipient.isChecked()){
+            type = "Recipient";
         }else {
             status =false;
             donor.setError("Select either donor or recipient");
         }
-        if (recipient.isChecked()){
-            type = "Recipient";
-        }
+
 
         return status;
     }
@@ -235,30 +236,39 @@ public class RegisterationFragment extends BaseFragment {
                if (validateFields()){
                  try {
                      progressDialog.show();
-                     jsonObject.addProperty("userName", username);
-                     jsonObject.addProperty("passWord", password);
                      jsonObject.addProperty("name", name);
-                     jsonObject.addProperty("bloodGroup", bloodGrp);
-                     jsonObject.addProperty("type", type);
                      jsonObject.addProperty("dob", dob);
+                     jsonObject.addProperty("bloodGroup", bloodGrp);
+                     jsonObject.addProperty("password", password);
+                     jsonObject.addProperty("phoneNo","9456866253");
+                     jsonObject.addProperty("email",email);
+                     jsonObject.addProperty("userName", username);
+
+
+
+                    // jsonObject.addProperty("type", type);
+
                      Log.d(TAG,jsonObject.toString());
                      donorApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
                              Log.d(TAG, "Success " + response.getReason());
-                             String json = new String(((TypedByteArray) response.getBody()).getBytes());
-                             replaceViewFragment(new LoginFragment(),false);
-                             JsonParser parser = new JsonParser();
-                             JsonElement responseJson = parser.parse(json);
+                            // String json = new String(((TypedByteArray) response.getBody()).getBytes());
+                         //    JsonParser parser = new JsonParser();
+                           //  JsonElement responseJson = parser.parse(json);
                              progressDialog.setMessage("Thank you for Signin up");
-                             signUpResponse(responseJson.getAsJsonObject());
-                             Log.d(TAG, "Success " + json);
+                             progressDialog.dismiss();
+                             replaceViewFragment(new LoginFragment(),false);
+                         //    signUpResponse(responseJson.getAsJsonObject());
+                        //     Log.d(TAG, "Success " + json);
                          }
 
                          @Override
                          public void failure(RetrofitError error) {
-                             Log.d(TAG, "Success " + error.getMessage());
+                             Log.d(TAG, "Error " + error.getMessage());
+                             progressDialog.setMessage("An error occured");
                          }
+
                      });
                  }catch (Exception e){
 
@@ -267,13 +277,13 @@ public class RegisterationFragment extends BaseFragment {
            }
        });
     }
-
-    public void signUpResponse(JsonObject jsonObject){
+  /*  public void signUpResponse(JsonObject jsonObject){
 
         if (jsonObject.get("registration").getAsString().equals("success"))
         {
             progressDialog.hide();
             replaceViewFragment(new LoginFragment(),true);
         }
-    }
+    }*/
+
 }

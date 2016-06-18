@@ -15,15 +15,15 @@ import retrofit.http.POST;
  */
 public interface DonorApi {
     @Headers("Content-Type: application/json")
-    @POST("/doc/gateWay")
+    @POST("/login")
     void login(@Body JSONObject jsonVal, Callback<Response> callback);
 
 
     @Headers("Content-Type: application/json")
-    @POST("/doc/register")
+    @POST("/register")
     void register(@Body JsonObject jsonVal, Callback<Response> callback);
 
     @Headers("Content-Type: application/json")
-    @POST("/doc/donor")
+    @POST("/donor")
     void requestDonor(@Body JsonObject jsonVal, Callback<Response> callback);
 }

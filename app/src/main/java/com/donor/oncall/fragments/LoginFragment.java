@@ -69,11 +69,11 @@ public class LoginFragment extends BaseFragment {
         if (email == null || email.isEmpty()){
             usernameField.setError("User name cannot be empty");
         }else {
-            if (email.matches(emailPattern)){
+          //  if (email.matches(emailPattern)){
                status = true;
-            }else {
-                usernameField.setError("Not a valid email Address");
-            }
+            //}else {
+              //  usernameField.setError("Not a valid email Address");
+           // }
         }
      return status;
     }
@@ -101,12 +101,12 @@ public class LoginFragment extends BaseFragment {
         rootView.findViewById(R.id.signin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject jsonObject = new JSONObject();
+                final JSONObject jsonObject = new JSONObject();
                 if (validateEmailIdAndPassword()) {
                     try {
 
                         jsonObject.put("userName", username);
-                        jsonObject.put("passWord", password);
+                        jsonObject.put("password", password);
 
 
                         donorApi.login(jsonObject, new Callback<Response>() {
@@ -122,7 +122,8 @@ public class LoginFragment extends BaseFragment {
 
                             @Override
                             public void failure(RetrofitError error) {
-                                Log.d(TAG, "Success " + error.getMessage());
+                                Log.d("tag", jsonObject.toString());
+                                Log.d(TAG, "Error " + error.toString());
                             }
                         });
 
