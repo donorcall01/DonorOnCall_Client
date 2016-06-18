@@ -10,8 +10,10 @@ import retrofit.client.OkClient;
  */
 public class ServiceGenerator {
 
+
     public static final String production_domain = "http://45.55.137.90:8000";
     public static  final String debug_domain = "http://192.168.0.103:8000";
+
 
     private static RestAdapter.Builder builder = new RestAdapter.Builder()
             .setEndpoint(production_domain)

@@ -19,6 +19,7 @@ public interface DonorApi {
     void login(@Body JsonObject jsonVal, Callback<Response> callback);
 
 
+
     @Headers("Content-Type: application/json")
     @POST("/register")
     void register(@Body JsonObject jsonVal, Callback<Response> callback);

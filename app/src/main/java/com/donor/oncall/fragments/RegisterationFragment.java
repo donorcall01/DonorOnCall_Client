@@ -141,7 +141,7 @@ public class RegisterationFragment extends BaseFragment {
         if (isNullOrEmpty(password)){
             if (isNullOrEmpty(cfrmpassword)){
                   if (!password.equals(cfrmpassword)){
-                      cfrmpwdField.setError("Passwords donot match");
+                      cfrmpwdField.setError("Passwords do not match");
                       status = false;
                   }
             }else {
@@ -182,7 +182,8 @@ public class RegisterationFragment extends BaseFragment {
         if (!isNullOrEmpty(phnnumber))
         {
             phnnumberField.setError("Phone Number cannot be empty");
-            status =false;
+
+            status = false;
         }
         return status;
     }
@@ -222,19 +223,23 @@ public class RegisterationFragment extends BaseFragment {
                if (validateFields()){
                  try {
                      progressDialog.show();
+
+
                      jsonObject.addProperty("password", password);
                      jsonObject.addProperty("name", name);
                      jsonObject.addProperty("bloodGroup", bloodGrp);
                      jsonObject.addProperty("dob", dob);
                      jsonObject.addProperty("phoneNo",phnnumber);
                      jsonObject.addProperty("email", email);
+
                      Log.d(TAG,jsonObject.toString());
                      donorApi.register(jsonObject,new Callback< Response >() {
                          @Override
                          public void success(Response response, Response response2) {
                              Log.d(TAG, "Success " + response.getReason());
+
                              progressDialog.setMessage("Thank you for Signin up");
-                            // String json = new String(((TypedByteArray) response.getBody()).getBytes());
+
                              replaceViewFragment(new LoginFragment(),false);
                              progressDialog.dismiss();
 
@@ -242,7 +247,6 @@ public class RegisterationFragment extends BaseFragment {
 
                          @Override
                          public void failure(RetrofitError error) {
-
                              new AlertDialog.Builder(getContext())
                                      .setTitle("User Already Exists")
                                      .setMessage("Email id has been already signed up. Please use forgot password to login.")

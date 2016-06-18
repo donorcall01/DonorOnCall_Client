@@ -101,13 +101,14 @@ public class LoginFragment extends BaseFragment {
         rootView.findViewById(R.id.signin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 JsonObject jsonObject = new JsonObject();
                 if (validateEmailIdAndPassword()) {
                     progressDialog.show();
                     try {
-
                         jsonObject.addProperty("userName", username);
                         jsonObject.addProperty("password", password);
+
 
                         donorApi.login(jsonObject, new Callback<Response>() {
                             @Override
@@ -129,11 +130,13 @@ public class LoginFragment extends BaseFragment {
 
                             @Override
                             public void failure(RetrofitError error) {
+
                                 String json =  new String(((TypedByteArray)error.getResponse().getBody()).getBytes());
                                 JsonParser parser = new JsonParser();
                                 JsonObject errorJson = parser.parse(json).getAsJsonObject();
                                 passwordField.setError(errorJson.get("error").getAsString());
                                 progressDialog.dismiss();
+
                             }
                         });
 
