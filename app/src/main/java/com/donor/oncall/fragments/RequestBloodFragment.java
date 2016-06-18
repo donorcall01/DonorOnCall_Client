@@ -187,13 +187,9 @@ public class RequestBloodFragment extends BaseFragment {
         rootView.findViewById(R.id.requestBlood).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("GeoSpace",String.valueOf(lattitude));
-                Log.d("GeoSpace",String.valueOf(longitude));
                 setFields();
                if (validateFields()){
                    progressDialog.show();
-                   Log.d("GeoSpace",String.valueOf(lattitude));
-                   Log.d("GeoSpace",String.valueOf(longitude));
                    JsonObject json = new JsonObject();
                    json.addProperty("token",DocSessionManager.getValueKey(DocSessionManager.KEY_ACESS_TOKEN));
                    JsonObject jsonObject = new JsonObject();
