@@ -16,7 +16,8 @@ import retrofit.http.POST;
 public interface DonorApi {
     @Headers("Content-Type: application/json")
     @POST("/login")
-    void login(@Body JSONObject jsonVal, Callback<Response> callback);
+    void login(@Body JsonObject jsonVal, Callback<Response> callback);
+
 
 
     @Headers("Content-Type: application/json")
@@ -24,6 +25,10 @@ public interface DonorApi {
     void register(@Body JsonObject jsonVal, Callback<Response> callback);
 
     @Headers("Content-Type: application/json")
-    @POST("/donor")
+    @POST("/api/bloodRequest/register")
     void requestDonor(@Body JsonObject jsonVal, Callback<Response> callback);
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/bloodRequest/get")
+    void getBloodRequest(@Body JsonObject jsonVal, Callback<Response> callback);
 }

@@ -3,6 +3,8 @@ package com.donor.oncall;
 import android.os.Bundle;
 
 import com.donor.oncall.fragments.MapViewFragment;
+import com.donor.oncall.fragments.MyRequestFragment;
+import com.donor.oncall.fragments.RequestBloodFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 

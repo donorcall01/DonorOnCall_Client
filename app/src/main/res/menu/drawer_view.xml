@@ -18,17 +18,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/pending_requests"
-            android:title="Pending requests" />
-        <item
-            android:id="@+id/request_for_blood"
-            android:title="Request for blood" />
-        <item
             android:id="@+id/profile"
             android:title="Profile" />
         <item
-            android:id="@+id/e_certificates"
-            android:title="E-certificates" />
+            android:id="@+id/request_for_blood"
+            android:title="Request for blood" />
+
+        <item
+            android:id="@+id/pending_requests"
+            android:title="My requests" />
+        <item
+            android:id="@+id/donor_feed"
+            android:title="Donor Feed" />
+
         <item
             android:id="@+id/all_donation_history"
             android:title="All donation history" />

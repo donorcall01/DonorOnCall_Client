@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.donor.oncall.fragments.MapViewFragment;
+import com.donor.oncall.fragments.MyRequestFragment;
+
 
 public class BaseActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
@@ -78,6 +81,7 @@ public class BaseActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        selectDrawerItem(menuItem);
                         return true;
                     }
                 });
@@ -101,5 +105,33 @@ public class BaseActivity extends AppCompatActivity {
                 .replace(containerResourceId, fragment);
         if (addToBackStack) transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+
+    public void selectDrawerItem(MenuItem menuItem) {
+
+        switch(menuItem.getItemId()) {
+            case R.id.request_for_blood:
+                replaceViewFragment(new MapViewFragment(),true);
+                break;
+            case R.id.pending_requests:
+                replaceViewFragment(new MyRequestFragment(),true);
+                break;
+            case R.id.donor_feed:
+                replaceViewFragment(new MyRequestFragment(),true);
+                break;
+            case R.id.all_donation_history:
+                break;
+            case R.id.profile:
+                break;
+
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            this.getFragmentManager().popBackStack();
+        }
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_margin="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:focusable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:clickable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:text="Name"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_below="@id/name"
+            android:text="52 yrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/gender"
+            android:text="Male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
+            android:layout_below="@+id/name"
+            android:layout_toRightOf="@+id/age"
+            android:layout_toEndOf="@+id/age" />
+
+        <TextView
+            android:id="@+id/units"
+            android:text="2 units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_below="@+id/name"
+            android:layout_toRightOf="@+id/gender"
+            android:layout_toEndOf="@+id/gender" />
+
+        <TextView
+            android:id="@+id/bloodgrp"
+            android:text="O+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_below="@+id/name"
+            android:layout_toRightOf="@+id/units"
+            android:layout_toEndOf="@+id/units" />
+
+        <TextView
+            android:id="@+id/adressInfo"
+            android:text="Saket Hospital,10/21 first street,Newdelhi - 14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/time"
+            android:text="12.15"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+</RelativeLayout>
